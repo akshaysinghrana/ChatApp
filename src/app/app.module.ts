@@ -7,6 +7,8 @@ import {SocialLoginModule,AuthServiceConfig,GoogleLoginProvider}from "angular-6-
 import { ChatmeComponent } from './chatme/chatme.component';
 import { RouterModule, Routes } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+
 
 const route: Routes = [
   { path: 'mechat',
@@ -41,7 +43,9 @@ const route: Routes = [
     BrowserModule,
     SocialLoginModule,
     RouterModule.forRoot(route),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+    // HttpHeaders
   ],
   providers: [{
     provide: AuthServiceConfig,
