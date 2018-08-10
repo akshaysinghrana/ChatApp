@@ -2,32 +2,35 @@
   Back
 </button>
 <button (click)="Authenticate()" disabled>Authenticate</button> -->
+
 <body>
-<div id="left">
-  <input type="text" placeholder="Search Channel here" [(ngModel)]="channel" /><br />
-  <button (click)="searchChannel()">Search</button>
-  <br />{{foundChannel}}<br />
-  <button (click)="joinChannel()">Join</button>
-  <br/>
-  <input type="text" placeholder="Enter Channel Name" [(ngModel)]="newChannel" />
-  <button (click)="addChannel()">+</button>
-</div>
+  <div id="left">
+    <input type="text" placeholder="Search Channel here" [(ngModel)]="channel" />
+    <br />
+    <button (click)="searchChannel()">Search</button>
+    <br />{{foundChannel}}
+    <br />
+    <button (click)="joinChannel()">Join</button>
+    <br/>
+    <input type="text" placeholder="Enter Channel Name" [(ngModel)]="newChannel" />
+    <span><button (click)="addChannel()">+</button></span>
+  </div>
 
 
-<div id="right">
+  <div id="right">
 
-            <div id="chat">
-              <ul *ngFor="let message of Messagesset">
-                <span >{{message}}</span>
-              </ul>         
-            </div>
-            <div id="message">
-              <div id="messageField">
-                <div id="msgSend">
-                  <input type="text" [(ngModel)]="myMessage">
-                  <button (click)="sendMessage()">Send Message</button>
-                </div>
-              </div>  
-            </div>
-</div>
+    <div id="chat">
+      <ul *ngFor="let message of Messagesset">
+        <span>{{message.body}}</span>
+      </ul>
+    </div>
+    <div id="message">
+      <div id="messageField">
+      </div>
+    </div>
+  </div>
+  <div id="msgSend">
+      <input type="text" [(ngModel)]="myMessage" size=114>
+      <button (click)="sendMessage()">Send Message</button>
+    </div>
 </body>

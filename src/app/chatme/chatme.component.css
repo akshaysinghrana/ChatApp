@@ -1,24 +1,34 @@
 body{
-    width: 400px;
-    height:300px;
-    background-color: skyblue;
+    width: 236px;
+    height: 593px;
+    background-color: #50384d;
     margin: 0%;
 }
 #left{
     float: left;
     height: 100%;
     width:30%;
-    background-color:skyblue;
+    background-color:#50384d;
 }
 #right{
     margin-top: 0%;
-    float:right;
+
     height: 100%;
     width: 40%;
     margin-left:50%;
-    background-color:skyblue;
+    background-color:#50384d;
 }
 
 .li{
     list-style: none;
 }
+#chat{
+    height: 584px;
+    width: 1034px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    margin-left: 129px;
+}
+#msgSend{
+    position: absolute;
+    margin-left: 250px;}

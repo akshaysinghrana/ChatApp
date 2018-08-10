@@ -10,14 +10,14 @@ import { ChatservService } from '../chatserv.service';
 export class ChatmeComponent implements OnInit {
 
   constructor(private router: Router, private chatser: ChatservService) { }
-  Authenticate() {
-    this.chatser.setJson().subscribe(response => {
-      console.log(response)
-    },
-      err => {
-        console.log(err);
-      });
-  }
+  // Authenticate() {
+  //   this.chatser.setJson().subscribe(response => {
+  //     console.log(response)
+  //   },
+  //     err => {
+  //       console.log(err);
+  //     });
+  // }
 
   foundChannel = "";
   newChannel: string;
@@ -77,7 +77,7 @@ export class ChatmeComponent implements OnInit {
     })
   }
 
-  myMessage: string;
+  myMessage: string='';
   sendMessage() {
     console.log("my msg"+this.myMessage);
     this.chatser.sendMessage(this.myMessage).subscribe(res => {
@@ -89,17 +89,17 @@ export class ChatmeComponent implements OnInit {
       })
   }
   totmsg: number;
-  Messagesset = {};
+  Messagesset: Array<any>;
   getAllMessages() {
     this.chatser.getAllMessages().subscribe(res => {
       this.Messagesset = res.messages;
         // console.log(res.messages.body);
      this.totmsg= res.messages.length;
      console.log("total   "+this.totmsg);
-     for(let start=1;start<this.totmsg;start++){
+     for(let start=0;start<this.totmsg;start++){
        
        console.log("Msg ",start+" is    "+res.messages[start].body);
-       this.Messagesset[start]=res.messages[start].body;
+       this.Messagesset[start].body=res.messages[start].body;
      }
     //  this.Messagesset=res.messages.body;
     },
