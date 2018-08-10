@@ -18,7 +18,7 @@ export class ChatloginComponent implements OnInit {
       // else if(socialPlatform == "twitter"){}
       this.socialAuthService.signIn(socialPlatformProvider).then(
         (userData) => {
-          console.log(socialPlatform+" sign in data : " , userData);
+          console.log(socialPlatform+" Login data : " , userData);
           this.router.navigate(['/mechat']);
         }
       );

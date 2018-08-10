@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChatservService } from '../chatserv.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chatme',
@@ -42,18 +41,18 @@ export class ChatmeComponent implements OnInit {
     this.chatser.searchChannel().subscribe(res => {
       console.log("RES value" + (res.channels[0].unique_name));
       console.log("len" + res.channels.length);
-      for (let index = 0; index < res.channels.length; index++) {
-        console.log("array " + (res.channels[index].sid));
-        this.channelArray.push(res.channels[index].unique_name)
+      for (let start = 0; start < res.channels.length; start++) {
+        console.log("array " + (res.channels[start].sid));
+        this.channelArray.push(res.channels[start].unique_name)
         console.log("channel array: " + this.channelArray);
         console.log("channel name: " + this.channel);
         this.arrayLen = this.channelArray.length;
-        for (let index = 0; index < this.arrayLen; index++) {
+        for (let start = 0; start < this.arrayLen; start++) {
           // console.log("in array: "+this.channelArray[index]+"    index  "+index);
-          if (this.channelArray[index] == this.channel) {
+          if (this.channelArray[start] == this.channel) {
             console.log("channel fopund");
             this.foundChannel = this.channel;
-            this.fChannId = res.channels[index].sid;
+            this.fChannId = res.channels[start].sid;
             break;
           }
           else {
@@ -80,27 +79,29 @@ export class ChatmeComponent implements OnInit {
 
   myMessage: string;
   sendMessage() {
+    console.log("my msg"+this.myMessage);
     this.chatser.sendMessage(this.myMessage).subscribe(res => {
       console.log(res);
+     
     },
       err => {
         console.log(err);
       })
   }
+  totmsg: number;
   Messagesset = {};
-  totalMessages: number;
   getAllMessages() {
     this.chatser.getAllMessages().subscribe(res => {
       this.Messagesset = res.messages;
         // console.log(res.messages.body);
-     this.totalMessages= res.messages.length;
-     console.log("total   "+this.totalMessages);
-     for(let start=1;start<this.totalMessages;start++){
+     this.totmsg= res.messages.length;
+     console.log("total   "+this.totmsg);
+     for(let start=1;start<this.totmsg;start++){
        
-       console.log("msg ",start+" is    "+res.messages[start].body);
-       this.Messagesset+=res.messages[start].body+"\n";
+       console.log("Msg ",start+" is    "+res.messages[start].body);
+       this.Messagesset[start]=res.messages[start].body;
      }
-      this.Messagesset=res.messages.body;
+    //  this.Messagesset=res.messages.body;
     },
       err => {
         console.log(err);

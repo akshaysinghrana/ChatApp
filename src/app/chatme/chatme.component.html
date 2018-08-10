@@ -1,33 +1,33 @@
-<h1>Hello</h1>
-<button (click)="back()">
+<!-- <button (click)="back()">
   Back
 </button>
-<button (click)="Authenticate()" disabled>Authenticate</button>
-<div class=left>
-  <input type="text" placeholder="Search Channel here" [(ngModel)]="channel" />
+<button (click)="Authenticate()" disabled>Authenticate</button> -->
+<body>
+<div id="left">
+  <input type="text" placeholder="Search Channel here" [(ngModel)]="channel" /><br />
   <button (click)="searchChannel()">Search</button>
-  <br />{{foundChannel}}
+  <br />{{foundChannel}}<br />
   <button (click)="joinChannel()">Join</button>
   <br/>
   <input type="text" placeholder="Enter Channel Name" [(ngModel)]="newChannel" />
   <button (click)="addChannel()">+</button>
-    <h3>Channels</h3>
 </div>
 
 
-<div class="right">
+<div id="right">
 
-            <div class="chat">
-              <ul *ngFor="let message of allMessages">
-                <li>{{messagesset.body}}</li>
+            <div id="chat">
+              <ul *ngFor="let message of Messagesset">
+                <span >{{message}}</span>
               </ul>         
             </div>
-            <div class="message">
-              <div class="messageField">
-                <div class="msgSend">
+            <div id="message">
+              <div id="messageField">
+                <div id="msgSend">
                   <input type="text" [(ngModel)]="myMessage">
                   <button (click)="sendMessage()">Send Message</button>
                 </div>
               </div>  
             </div>
 </div>
+</body>
