@@ -12,3 +12,19 @@ input[type="button"] {
     background: coral;
     cursor: pointer;
 }
+
+/* .logout {
+    
+} */
+
+.logout {
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 5vh;
+}
+
+button:hover {
+    border: none;
+    color: #4D394B;
+    background-color: #AB9BA9;
+}

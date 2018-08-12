@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-add-channel',
@@ -10,7 +11,7 @@ export class AddChannelComponent implements OnInit {
   addChannel: EventEmitter<string> = new EventEmitter<string>();
   channelName: string;
 
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit() {
     this.channelName = null;
@@ -21,5 +22,11 @@ export class AddChannelComponent implements OnInit {
       this.addChannel.emit(this.channelName);
       this.channelName = null;
     }
+  }
+
+  logout() {
+    localStorage.clear();
+    alert('You are logged out!!');
+    this._router.navigate(['/']);
   }
 }
