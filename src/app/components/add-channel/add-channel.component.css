@@ -1,0 +1,14 @@
+.add-channel {
+    margin: 20px 10px;
+}
+
+input {
+    font-size: 18px;
+    font-style: italic;
+}
+
+input[type="button"] {
+    color: white;
+    background: coral;
+    cursor: pointer;
+}

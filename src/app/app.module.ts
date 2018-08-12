@@ -3,41 +3,60 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ChatloginComponent } from './chatlogin/chatlogin.component';
-import {SocialLoginModule,AuthServiceConfig,GoogleLoginProvider}from "angular-6-social-login";
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider
+} from 'angular-6-social-login';
 import { ChatmeComponent } from './chatme/chatme.component';
 import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { ChannelListComponent } from './components/channel-list/channel-list.component';
+import { AddChannelComponent } from './components/add-channel/add-channel.component';
 
 const route: Routes = [
-  { path: 'mechat',
-   component: ChatmeComponent },
-   {path: '',
-    component: ChatloginComponent},
-    {path: 'loginchat',
-    component: ChatloginComponent},
-    {path:"**",
-  component:ChatloginComponent}
-]
-
-  export function getAuthServiceConfigs() {
-    let config = new AuthServiceConfig(
-        [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider("172104126983-47v4rs9ln893e7bdugtoogorpdl489g3.apps.googleusercontent.com")
-          }
-          ]
-        );
-    return config;
+  {
+    path: 'mechat',
+    component: ChatmeComponent
+  },
+  {
+    path: '',
+    component: ChatloginComponent
+  },
+  {
+    path: 'loginchat',
+    component: ChatloginComponent
+  },
+  {
+    path: '**',
+    component: NotfoundComponent
   }
+];
+
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(
+        '172104126983-47v4rs9ln893e7bdugtoogorpdl489g3.apps.googleusercontent.com'
+      )
+    }
+  ]);
+  return config;
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatloginComponent,
-    ChatmeComponent
+    ChatmeComponent,
+    ClickOutsideDirective,
+    NotfoundComponent,
+    ChannelListComponent,
+    AddChannelComponent
   ],
   imports: [
     BrowserModule,
@@ -45,12 +64,13 @@ const route: Routes = [
     RouterModule.forRoot(route),
     HttpClientModule,
     FormsModule
-    // HttpHeaders
   ],
-  providers: [{
-    provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs
-  }],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

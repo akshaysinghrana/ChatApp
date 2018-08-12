@@ -1,34 +1,113 @@
-body{
-    width: 236px;
-    height: 593px;
+.container {
+    display: flex;
+    height: 100%;
     background-color: #50384d;
-    margin: 0%;
-}
-#left{
-    float: left;
-    height: 100%;
-    width:30%;
-    background-color:#50384d;
-}
-#right{
-    margin-top: 0%;
-
-    height: 100%;
-    width: 40%;
-    margin-left:50%;
-    background-color:#50384d;
 }
 
-.li{
-    list-style: none;
+.channel-section {
+    height: 100%;
+    width: 30%;
+    background-color: #50384d;
 }
-#chat{
-    height: 584px;
-    width: 1034px;
-    border: 1px solid #ccc;
-    overflow: auto;
-    margin-left: 129px;
+
+.chat-section {
+    height: 100%;
+    width: 70%;
+    background-color: darkslateblue;
+    padding: 10px;
+    border: 1px solid #cccccc;
 }
-#msgSend{
+
+.chat-section .error-msg {
+    color: red;
+    font-size: 14px;
     position: absolute;
-    margin-left: 250px;}
+}
+
+#channelname {
+    margin-left: 90px;
+}
+
+.search-channel-section {
+    position: relative;
+    display: flex;
+}
+
+.search-channel-section input {
+    width: calc(100% - 100px);
+    font-size: 20px;
+    font-style: italic;
+}
+
+.search-channel-section button {
+    cursor: pointer;
+}
+
+.search-channel-list-panel {
+    position: absolute;
+    background: white;
+    margin-top: 21px;
+    width: calc(100% - 96px);
+    border: 1px solid #ccc;
+}
+
+.search-channel-list-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-channel-list-panel li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.search-channel-list-panel li:hover {
+    background-color: #f5f5f5;
+}
+
+.message-section {
+    background-color: white;
+}
+
+.message-list {
+    list-style: none;
+    border: 2px solid #ccc;
+    padding: 0;
+    overflow: auto;
+    height: 500px;
+    max-height: 500px;
+}
+
+.message-list .message {
+    padding: 5px 10px;
+    margin: 10px 0;
+    background-color: burlywood;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+}
+
+.message-list .message.from {
+    text-align: right;
+    background-color: cornflowerblue;
+}
+
+.message .user-name {
+    font-weight: bold;
+}
+
+.message .text {
+    margin: 5px 0;
+}
+
+.sending-section {
+    display: flex;
+}
+
+.sending-section input {
+    width: calc(100% - 100px);
+}
+
+.sending-section button {
+    cursor: pointer;
+}
