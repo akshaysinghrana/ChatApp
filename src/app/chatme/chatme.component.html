@@ -22,20 +22,22 @@
     </div>
     <span class="error-msg">{{searchChannelPanelDetails?.infoMsg}}</span>
     <div class="join-channel-section" *ngIf="joinChannelDetails?.show">
-      <span>{{joinChannelDetails?.channel?.unique_name}}</span>
+      <span class="text">{{joinChannelDetails?.channel?.unique_name}}</span>
       <input type="button" class="" value="Join channel" (click)="onJoinChannel()">
       <input type="button" class="" value="Cancel" (click)="onCancelJoinChannel()">
     </div>
     <div class="message-section">
-      <ul class="message-list">
+      <ul id="chatMessageList" class="message-list">
         <li class="message" [ngClass]="{'from': message?.from === _chatService?.identity}" *ngFor="let message of messageSet;">
-          <span class="user-name ">{{message?.userName}}</span>
-          <p class="text ">{{message?.body}}</p>
+          <div class="content">
+            <span class="user-name ">{{message?.userName}}</span>
+            <p class="text ">{{message?.body}}</p>
+          </div>
       </ul>
     </div>
     <div class="sending-section ">
-      <input type="text " [(ngModel)]="message " size=114>
-      <button (click)="sendMessage() ">Send Message</button>
+      <input type="text " [(ngModel)]="message">
+      <button (click)="sendMessage()" [disabled]="!selectedChannel">Send</button>
     </div>
   </article>
 </section>

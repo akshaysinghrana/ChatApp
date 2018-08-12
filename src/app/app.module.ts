@@ -16,19 +16,22 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ChannelListComponent } from './components/channel-list/channel-list.component';
 import { AddChannelComponent } from './components/add-channel/add-channel.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const route: Routes = [
   {
     path: 'mechat',
-    component: ChatmeComponent
+    component: ChatmeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
     component: ChatloginComponent
   },
   {
-    path: 'loginchat',
-    component: ChatloginComponent
+    path: '',
+    pathMatch: 'full',
+    redirectTo: ''
   },
   {
     path: '**',

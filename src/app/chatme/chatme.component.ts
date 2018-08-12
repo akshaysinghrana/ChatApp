@@ -51,8 +51,12 @@ export class ChatmeComponent implements OnInit {
       show: false
     };
     this.channelList = [];
-    // this.getAllMessages();
     this.getAllChannel();
+    setInterval(() => {
+      if (this.selectedChannel && this.selectedChannel.sid) {
+        this.getAllMessages(this.selectedChannel.sid);
+      }
+    }, 5000);
   }
 
   addChannel(channelName: string) {
@@ -152,21 +156,24 @@ export class ChatmeComponent implements OnInit {
   }
 
   getAllMessages(channelId: string) {
-    this._chatService.getAllMessages(channelId).subscribe(
-      res => {
-        this.messageSet = res.messages.reverse();
-        for (const message of this.messageSet) {
-          if (message.from === this._chatService.identity) {
-            message.userName = 'Me';
-          } else {
-            message.userName = message.from.split('@')[0];
+    if (channelId) {
+      this._chatService.getAllMessages(channelId).subscribe(
+        res => {
+          this.messageSet = res.messages.reverse();
+          for (const message of this.messageSet) {
+            if (message.from === this._chatService.identity) {
+              message.userName = 'Me';
+            } else {
+              message.userName = message.from.split('@')[0];
+            }
           }
+          this.chatScrollToBottom();
+        },
+        err => {
+          console.log(err);
         }
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      );
+    }
   }
 
   back() {
@@ -212,5 +219,12 @@ export class ChatmeComponent implements OnInit {
 
   closeSearchChannelPanel() {
     this.searchChannelPanelDetails.show = false;
+  }
+
+  chatScrollToBottom() {
+    setTimeout(() => {
+      const objDiv = document.getElementById('chatMessageList');
+      objDiv.scrollTop = objDiv.scrollHeight;
+    });
   }
 }
