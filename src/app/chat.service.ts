@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChatService implements CanActivate {
+export class ChatService {
   apiUrl = 'https://chat.twilio.com/v2/Services';
   serviceId: String = 'IS5073caf0f5444cf498f6f846a417f6cd';
   chennalList: any;
@@ -25,18 +24,8 @@ export class ChatService implements CanActivate {
   UserName: String = 'AC4965cad5fb941a77859edf7b85404ff5';
   Password: String = '6f4196dad2d5a2348f4f2413b2df1416';
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient) {}
 
-  canActivate() {
-    if (this.identity !== null) {
-      console.log('true');
-      return true;
-    } else {
-      console.log('false');
-      this.router.navigate(['/chatlogin']);
-      return false;
-    }
-  }
   setJson(): Observable<any> {
     return this.httpClient.post(
       this.apiUrl,

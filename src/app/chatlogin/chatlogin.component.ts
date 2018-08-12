@@ -9,21 +9,26 @@ import { Router } from '@angular/router';
 })
 export class ChatloginComponent implements OnInit {
   checkauthentication = false;
-  constructor(private socialAuthService: AuthService, private router: Router) {}
+  constructor(
+    private socialAuthService: AuthService,
+    private _router: Router
+  ) {}
+
+  ngOnInit() {
+    if (localStorage.getItem('Identity')) {
+      this._router.navigate(['/mechat']);
+    }
+  }
 
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     if (socialPlatform === 'google') {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
-    // else if(socialPlatform == "twitter"){}
     this.socialAuthService.signIn(socialPlatformProvider).then(userData => {
-      console.log(socialPlatform + ' Login data : ', userData);
       this.checkauthentication = true;
       localStorage.setItem('Identity', userData.email);
-      this.router.navigate(['/mechat']);
+      this._router.navigate(['/mechat']);
     });
   }
-
-  ngOnInit() {}
 }
