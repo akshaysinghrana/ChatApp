@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChatService } from '../chat.service';
 import { userInfo } from 'os';
@@ -9,7 +9,7 @@ import { callbackify } from 'util';
   templateUrl: './chatme.component.html',
   styleUrls: ['./chatme.component.css']
 })
-export class ChatmeComponent implements OnInit {
+export class ChatmeComponent implements OnInit, OnDestroy {
   channel: string;
   searchChannelPanelDetails: {
     list: any[];
@@ -28,6 +28,10 @@ export class ChatmeComponent implements OnInit {
   messageSet: Array<any>;
   foundChannel: string;
   searchedchannel: string;
+  key: any;
+  ngOnDestroy() {
+    clearInterval(this.key);
+  }
 
   constructor(private router: Router, private _chatService: ChatService) {}
   // Authenticate() {
@@ -38,7 +42,6 @@ export class ChatmeComponent implements OnInit {
   //       console.log(err);
   //     });
   // }
-
   ngOnInit() {
     this.channel = null;
     this.searchChannelPanelDetails = {
@@ -52,7 +55,7 @@ export class ChatmeComponent implements OnInit {
     };
     this.channelList = [];
     this.getAllChannel();
-    setInterval(() => {
+    this.key = setInterval(() => {
       if (this.selectedChannel && this.selectedChannel.sid) {
         this.getAllMessages(this.selectedChannel.sid);
       }
@@ -176,9 +179,9 @@ export class ChatmeComponent implements OnInit {
     }
   }
 
-  back() {
-    this.router.navigate(['/loginchat']);
-  }
+  // back() {
+  //   this.router.navigate(['/loginchat']);
+  // }
 
   onChannelSelectionFromSearchPanel(channel: any) {
     this.closeSearchChannelPanel();
