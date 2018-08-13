@@ -13,9 +13,13 @@ input[type="button"] {
     cursor: pointer;
 }
 
+/* .logout-section{
+
+} */
+
 .logout {
     float: right;
-    margin-right: 20px;
+    margin-right: 2px;
     margin-bottom: 5vh;
 }
 

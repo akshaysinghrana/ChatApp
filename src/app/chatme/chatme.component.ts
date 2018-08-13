@@ -103,7 +103,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
 
   searchChannel(channel: string) {
     this.searchChannelPanelDetails.infoMsg = null;
-    if (channel) {
+    if (channel.length>=3) {
       this._chatService.getAllChannels().subscribe(
         res => {
           this.searchChannelPanelDetails.list = [];
@@ -116,6 +116,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
             }
           }
           if (!this.searchChannelPanelDetails.list.length) {
+            // this.closeSearchChannelPanel();
             this.searchChannelPanelDetails.infoMsg = 'No record found';
           }
         },
@@ -124,6 +125,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
         }
       );
     } else {
+      this.closeSearchChannelPanel();
       this.searchChannelPanelDetails.infoMsg = 'Please enter the channel name';
     }
   }
@@ -168,7 +170,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
               message.userName = message.from.split('@')[0];
             }
           }
-          this.chatScrollToBottom();
+          // this.chatScrollToBottom();
         },
         err => {
           console.log(err);
@@ -222,10 +224,8 @@ export class ChatmeComponent implements OnInit, OnDestroy {
     this.searchChannelPanelDetails.show = false;
   }
 
-  chatScrollToBottom() {
-    setTimeout(() => {
-      const objDiv = document.getElementById('chatMessageList');
-      objDiv.scrollTop = objDiv.scrollHeight;
-    });
-  }
+  // chatScrollToBottom() {
+  //     const objDiv = document.getElementById('chatMessageList');
+  //     objDiv.scrollTop = objDiv.scrollHeight;
+  // }
 }
