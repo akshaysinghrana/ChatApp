@@ -1,0 +1,6 @@
+<div class="channel-list-section">
+  <h2>Channels List</h2>
+  <ul>
+    <li *ngFor="let item of list;" (click)="select(item)" [ngClass]="{'active': selectedItem?.sid === item?.sid}">{{item?.unique_name | titlecase}}</li>
+  </ul>
+</div>

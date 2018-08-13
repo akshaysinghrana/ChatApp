@@ -3,34 +3,41 @@
 </button>
 <button (click)="Authenticate()" disabled>Authenticate</button> -->
 
-<body>
-  <div id="left">
-    <input type="text" placeholder="Search Channel here" [(ngModel)]="channel" />
-    <br />
-    <button (click)="searchChannel()">Search</button>
-    <br />{{foundChannel}}
-    <br />
-    <button (click)="joinChannel()">Join</button>
-    <br/>
-    <input type="text" placeholder="Enter Channel Name" [(ngModel)]="newChannel" />
-    <span><button (click)="addChannel()">+</button></span>
-  </div>
+<section class="container">
+  <article class="channel-section">
+    <!-- <button (click)="joinChannel()">Join</button> -->
 
-
-  <div id="right">
-
-    <div id="chat">
-      <ul *ngFor="let message of Messagesset">
-        <span>{{message.body}}</span>
-      </ul>
-    </div>
-    <div id="message">
-      <div id="messageField">
+    <app-add-channel (addChannel)="addChannel($event)"></app-add-channel>
+    <app-channel-list [list]="channelList" [selectedItem]="selectedChannel" (updateSelection)="onChannelSelection($event)"></app-channel-list>
+  </article>
+  <article class="chat-section">
+    <div class="search-channel-section" (appClickOutside)="closeSearchChannelPanel()">
+      <input type="text" placeholder="Search channel here" [(ngModel)]="channel" />
+      <button (click)="searchChannel(channel)">Search</button>
+      <div class="search-channel-list-panel" *ngIf="searchChannelPanelDetails.list.length && searchChannelPanelDetails?.show">
+        <ul>
+          <li *ngFor="let channel of searchChannelPanelDetails?.list" (click)="onChannelSelectionFromSearchPanel(channel)">{{channel?.unique_name}}</li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div id="msgSend">
-      <input type="text" [(ngModel)]="myMessage" size=114>
-      <button (click)="sendMessage()">Send Message</button>
+    <span class="error-msg">{{searchChannelPanelDetails?.infoMsg}}</span>
+    <div class="join-channel-section" *ngIf="joinChannelDetails?.show">
+      <span class="text">{{joinChannelDetails?.channel?.unique_name}}</span>
+      <input type="button" class="" value="Join channel" (click)="onJoinChannel()">
+      <input type="button" class="" value="Cancel" (click)="onCancelJoinChannel()">
     </div>
-</body>
+    <div class="message-section">
+      <ul id="chatMessageList" class="message-list">
+        <li class="message" [ngClass]="{'from': message?.from === _chatService?.identity}" *ngFor="let message of messageSet;">
+          <div class="content">
+            <span class="user-name ">{{message?.userName}}</span>
+            <p class="text ">{{message?.body}}</p>
+          </div>
+      </ul>
+    </div>
+    <div class="sending-section ">
+      <input type="text " [(ngModel)]="message">
+      <button (click)="sendMessage()" [disabled]="!selectedChannel">Send</button>
+    </div>
+  </article>
+</section>
