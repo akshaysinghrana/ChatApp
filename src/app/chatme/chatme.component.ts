@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChatService } from '../chat.service';
-import { userInfo } from 'os';
-import { callbackify } from 'util';
 
 @Component({
   selector: 'app-chatme',
