@@ -30,7 +30,9 @@
     </div>
     <div class="sending-section ">
       <input type="text " [(ngModel)]="message">
-      <button (click)="sendMessage()" [disabled]="!selectedChannel">Send</button>
+      <button (click)="sendMessage()" [disabled]="!selectedChannel">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </button>
     </div>
   </article>
 </section>
