@@ -103,7 +103,8 @@ export class ChatmeComponent implements OnInit, OnDestroy {
 
   searchChannel(channel: string) {
     this.searchChannelPanelDetails.infoMsg = null;
-    if (channel.length>=3) {
+    this.searchChannelPanelDetails.show = false;
+    if (channel.length >= 3) {
       this._chatService.getAllChannels().subscribe(
         res => {
           this.searchChannelPanelDetails.list = [];
@@ -116,7 +117,6 @@ export class ChatmeComponent implements OnInit, OnDestroy {
             }
           }
           if (!this.searchChannelPanelDetails.list.length) {
-            // this.closeSearchChannelPanel();
             this.searchChannelPanelDetails.infoMsg = 'No record found';
           }
         },
@@ -143,7 +143,11 @@ export class ChatmeComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    if (this.selectedChannel && this.selectedChannel.sid && this.message) {
+    if (
+      this.selectedChannel &&
+      this.selectedChannel.sid &&
+      this.message.trim()
+    ) {
       this._chatService
         .sendMessage(this.message, this.selectedChannel.sid)
         .subscribe(
@@ -221,7 +225,9 @@ export class ChatmeComponent implements OnInit, OnDestroy {
   }
 
   closeSearchChannelPanel() {
-    this.searchChannelPanelDetails.show = false;
+    if (this.searchChannelPanelDetails) {
+      this.searchChannelPanelDetails.show = false;
+    }
   }
 
   // chatScrollToBottom() {

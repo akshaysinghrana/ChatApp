@@ -1,19 +1,13 @@
-<!-- <button (click)="back()">
-  Back
-</button>
-<button (click)="Authenticate()" disabled>Authenticate</button> -->
-
 <section class="container">
   <article class="channel-section">
-    <!-- <button (click)="joinChannel()">Join</button> -->
-
+    <h1 class="app-title">Ch@t Zilla</h1>
     <app-add-channel (addChannel)="addChannel($event)"></app-add-channel>
-    <app-channel-list [list]="channelList" [selectedItem]="selectedChannel" (updateSelection)="onChannelSelection($event)" ></app-channel-list>
+    <app-channel-list [list]="channelList" [selectedItem]="selectedChannel" (updateSelection)="onChannelSelection($event)"></app-channel-list>
   </article>
   <article class="chat-section">
     <div class="search-channel-section" (appClickOutside)="closeSearchChannelPanel()">
       <input type="text" placeholder="Search channel here" [(ngModel)]="channel" (keyup)="searchChannel(channel)" />
-      <div class="search-channel-list-panel" *ngIf="searchChannelPanelDetails.list.length && searchChannelPanelDetails?.show">
+      <div class="search-channel-list-panel" *ngIf="searchChannelPanelDetails?.list?.length && searchChannelPanelDetails?.show">
         <ul>
           <li *ngFor="let channel of searchChannelPanelDetails?.list" (click)="onChannelSelectionFromSearchPanel(channel)">{{channel?.unique_name}}</li>
         </ul>

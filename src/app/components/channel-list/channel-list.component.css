@@ -2,6 +2,11 @@
     margin: 10px;
 }
 
+.content {
+    max-height: 398px;
+    overflow-y: auto;
+}
+
 ul {
     list-style: none;
     padding: 0;

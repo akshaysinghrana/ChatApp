@@ -4,6 +4,13 @@
     background-color: #50384d;
 }
 
+.app-title {
+    font-size: 45px;
+    margin: 20px 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
 .channel-section {
     height: 100%;
     width: 30%;
@@ -52,10 +59,11 @@
     margin-top: 21px;
     width: calc(100% - 96px);
     border: 1px solid #ccc;
+    z-index: 1;
 }
 
 .search-channel-list-panel ul {
-    list-style: disc;
+    list-style: none;
     padding: 0;
     margin: 0;
 }
