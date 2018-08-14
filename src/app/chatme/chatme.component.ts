@@ -27,6 +27,8 @@ export class ChatmeComponent implements OnInit, OnDestroy {
   foundChannel: string;
   searchedchannel: string;
   key: any;
+  date: any;
+  time: any;
   ngOnDestroy() {
     clearInterval(this.key);
   }
@@ -51,6 +53,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
       channel: null,
       show: false
     };
+
     this.channelList = [];
     this.getAllChannel();
     this.key = setInterval(() => {
@@ -166,6 +169,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
     if (channelId) {
       this._chatService.getAllMessages(channelId).subscribe(
         res => {
+          console.log(res.messages);
           this.messageSet = res.messages.reverse();
           for (const message of this.messageSet) {
             if (message.from === this._chatService.identity) {

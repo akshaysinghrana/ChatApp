@@ -130,6 +130,10 @@
     background-color: #777777;
 }
 
+.message-list .message .content .messageDateTime {
+    text-align:right;
+}
+
 .message .user-name {
     font-weight: bold;
 }
