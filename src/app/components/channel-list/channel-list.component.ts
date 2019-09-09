@@ -11,7 +11,7 @@ export class ChannelListComponent implements OnInit {
   @Input()
   selectedItem: any;
   @Output()
-  updateSelection: EventEmitter<string> = new EventEmitter<string>();
+  updateSelection: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
     this.list = [];

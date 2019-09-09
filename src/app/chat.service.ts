@@ -13,6 +13,7 @@ export class ChatService {
   myChannelId: String = 'CHcee605ea73d342fca51a585b7292e834';
   // identity:string="akshay.singh@kelltontech.com";
   identity: String = localStorage.getItem('Identity');
+  identityName: String = localStorage.getItem('IdentityName');
 
   httpOptions = {
     headers: new HttpHeaders({

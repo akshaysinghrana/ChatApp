@@ -6,7 +6,7 @@
   </article>
   <article class="chat-section">
     <div class="search-channel-section" (appClickOutside)="closeSearchChannelPanel()">
-      <input type="text" placeholder="Search channel here" [(ngModel)]="channel" (keyup)="searchChannel(channel)" />
+      <input type="text" placeholder="Search channel here" [(ngModel)]="channel" (keyup)="searchChannel(channel)" (click)="searchChannel(channel)" />
       <div class="search-channel-list-panel" *ngIf="searchChannelPanelDetails?.list?.length && searchChannelPanelDetails?.show">
         <ul>
           <li *ngFor="let channel of searchChannelPanelDetails?.list" (click)="onChannelSelectionFromSearchPanel(channel)">{{channel?.unique_name}}</li>

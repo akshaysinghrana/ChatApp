@@ -27,7 +27,9 @@ export class ChatloginComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(userData => {
       this.checkauthentication = true;
+      console.log(userData.name);
       localStorage.setItem('Identity', userData.email);
+      localStorage.setItem('IdentityName', userData.name);
       this._router.navigate(['/mechat']);
     });
   }

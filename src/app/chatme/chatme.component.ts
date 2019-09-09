@@ -74,18 +74,32 @@ export class ChatmeComponent implements OnInit, OnDestroy {
   }
 
   checkMemberInChannel(memberList: any[]) {
+    // console.log(memberList.length);
     for (const member of memberList) {
       if (member.identity === this._chatService.identity) {
+        // console.log(memberList.length);
         return true;
       }
     }
     return false;
   }
 
+  joinCommonChannel(channel) {
+    if(channel.unique_name === 'Channel 4') {
+      this.joinChannelDetails = {
+        channel: channel,
+        show: false
+      };
+      this.onJoinChannel();
+      this.onChannelSelection(channel);
+    }
+  }
+
   getAllChannel() {
     this._chatService.getAllChannels().subscribe(
       (res: any) => {
         for (const channel of res.channels) {
+        this.joinCommonChannel(channel);
           if (channel.members_count) {
             this._chatService
               .getAllMembersOfChannel(channel.sid)
@@ -121,7 +135,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
           }
         },
         err => {
-          console.log(err);
+        //  console.log(err);
         }
       );
     } else {
@@ -156,7 +170,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
             this.getAllMessages(this.selectedChannel.sid);
           },
           err => {
-            console.log(err);
+          //  console.log(err);
           }
         );
     }
@@ -169,15 +183,17 @@ export class ChatmeComponent implements OnInit, OnDestroy {
           this.messageSet = res.messages.reverse();
           for (const message of this.messageSet) {
             if (message.from === this._chatService.identity) {
-              message.userName = 'Me';
+              // message.userName = 'Me';
+              message.userName = this._chatService.identityName;
             } else {
               message.userName = message.from.split('@')[0];
+              // message.userName = this._chatService.identityName;
             }
           }
           // this.chatScrollToBottom();
         },
         err => {
-          console.log(err);
+        //  console.log(err);
         }
       );
     }
@@ -188,6 +204,7 @@ export class ChatmeComponent implements OnInit, OnDestroy {
   // }
 
   onChannelSelectionFromSearchPanel(channel: any) {
+  this.channel = channel.unique_name;
     this.closeSearchChannelPanel();
     for (const item of this.channelList) {
       if (item.sid === channel.sid) {
