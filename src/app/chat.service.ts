@@ -8,9 +8,9 @@ import { map } from 'rxjs/operators';
 })
 export class ChatService {
   apiUrl = 'https://chat.twilio.com/v2/Services';
-  serviceId: String = 'IS5073caf0f5444cf498f6f846a417f6cd';
+  serviceId: string = 'IS5073caf0f5444cf498f6f846a417f6cd';
   chennalList: any;
-  myChannelId: String = 'CHcee605ea73d342fca51a585b7292e834';
+  myChannelId: string = 'CHcee605ea73d342fca51a585b7292e834';
   // identity:string="akshay.singh@kelltontech.com";
   identity: String = localStorage.getItem('Identity');
   identityName: String = localStorage.getItem('IdentityName');
@@ -22,8 +22,8 @@ export class ChatService {
         'Basic QUM0OTY1Y2FkNWZiOTQxYTc3ODU5ZWRmN2I4NTQwNGZmNTo2ZjQxOTZkYWQyZDVhMjM0OGY0ZjI0MTNiMmRmMTQxNg== '
     })
   };
-  UserName: String = 'AC4965cad5fb941a77859edf7b85404ff5';
-  Password: String = '6f4196dad2d5a2348f4f2413b2df1416';
+  UserName: string = 'AC4965cad5fb941a77859edf7b85404ff5';
+  Password: string = '6f4196dad2d5a2348f4f2413b2df1416';
 
   constructor(private httpClient: HttpClient) {}
 
